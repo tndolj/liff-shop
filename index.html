@@ -175,13 +175,7 @@
         $('#checkout-deliver').click(function() {
           $('#deliver').addClass("d-none");
 
-         liff.sendMessages([
-            {
-              type: "text",
-              text: 'Hello, World! <br>'
-            },
-          ]);
-
+          sendMsg();
 
           liff.closeWindow();
         });
@@ -198,6 +192,18 @@
         await liff.init({ liffId: "1656517638-x8aYEG1D" });
       }
       
+      async function sendMsg() {
+        if (liff.getContext().type !== "none") {
+          await liff.sendMessages([
+            {
+              type: "text",
+              text: 'Hello, World! <br>'
+            },
+          ]);
+          alert("Message sent");
+        }
+      }
+
       main();
     </script>
   </body>
