@@ -26,13 +26,13 @@ body {
   }
 
   .id-input .decrease {
-    margin-right: -7px;
-    border-radius: 8px 0 0 8px;
+    margin-right: 0px;
+    border-radius: 8px;
   }
 
   .id-input .increase {
-    margin-left: -7px;
-    border-radius: 0 8px 8px 0;
+    margin-left: 0px;
+    border-radius: 8px;
   }
 
   input.number {
@@ -42,6 +42,7 @@ body {
     margin: 0px;
     width: 40px;
     height: 40px;
+    border-radius: 8px;
   }
 
   input[type=number]::-webkit-inner-spin-button,
