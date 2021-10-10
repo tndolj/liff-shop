@@ -179,19 +179,15 @@
 
       async function main() {
         liff.ready.then(() => {
-          // document.getElementById("isLoggedIn").append(liff.isLoggedIn());
           if (liff.isLoggedIn()) {
-            // getEnvironment();
-            // getUserProfile();
-            // getContext();
-            // getFriendship();
-            // createUniversalLink();
+            // Actions
           } else {
             liff.login();
           }
         });
         await liff.init({ liffId: "1656517638-x8aYEG1D" });
       }
+      
       main();
     </script>
   </body>
