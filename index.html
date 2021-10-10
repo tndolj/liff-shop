@@ -130,6 +130,11 @@
     </div>
    </div>
 
+   <img id="pictureUrl" width="25%">
+   <p id="userId"></p>
+   <p id="displayName"></p>
+   <p id="statusMessage"></p>
+
     <!-- Bootstrap script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     
@@ -175,16 +180,25 @@
         $('#checkout-deliver').click(function() {
           $('#deliver').addClass("d-none");
 
-          sendMsg();
+          document.getElementById("statusMessage").innerHTML = '<b>StatusMessage:</b> ' + profile.statusMessage;
 
-          liff.closeWindow();
+          // liff.closeWindow();
         });
       }); 
+
+      function runApp() {
+      liff.getProfile().then(profile => {
+        document.getElementById("pictureUrl").src = profile.pictureUrl;
+        document.getElementById("userId").innerHTML = '<b>UserId:</b> ' + profile.userId;
+        document.getElementById("displayName").innerHTML = '<b>DisplayName:</b> ' + profile.displayName;
+        document.getElementById("statusMessage").innerHTML = '<b>StatusMessage:</b> ' + profile.statusMessage;
+      }).catch(err => console.error(err));
+    }
 
       async function main() {
         liff.ready.then(() => {
           if (liff.isLoggedIn()) {
-            // Actions
+            runApp()
           } else {
             liff.login();
           }
