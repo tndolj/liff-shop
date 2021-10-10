@@ -162,7 +162,7 @@
           var sum_product = parseInt(product_1) + parseInt(product_2);
           var total_price = sum_product * 700;
 
-          $('#total-price').text(total_price.toFixed(2));
+          $('#total-price').text(total_price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
 
           $('#deliver').removeClass("d-none");
         });
