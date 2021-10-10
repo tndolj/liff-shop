@@ -181,7 +181,8 @@
           $('#deliver').addClass("d-none");
 
           sendMsg()
-          // liff.closeWindow();
+
+          liff.closeWindow();
         });
       }); 
 
@@ -210,10 +211,9 @@
           await liff.sendMessages([
             {
               type: "text",
-              text: 'Hello, World! <br>'
+              text: 'Your Order is ...'
             },
           ]);
-          alert("Message sent");
         }
       }
 
