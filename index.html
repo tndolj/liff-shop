@@ -1,161 +1,176 @@
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover"
-    />
-    <title>My LIFF App</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,400;0,600;1,100;1,400;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>INSTi</title>
   </head>
-  <body>
-    <p id="os"><b>OS:</b></p>
-    <p id="language"><b>Language:</b></p>
-    <p id="version"><b>Version:</b></p>
-    <p id="isInClient"><b>isInClient:</b></p>
-    <p id="accessToken"><b>AccessToken:</b></p>
-    <img id="pictureUrl" />
-    <p id="userId"><b>userId:</b></p>
-    <p id="displayName"><b>displayName:</b></p>
-    <p id="statusMessage"><b>statusMessage:</b></p>
-    <p id="decodedIDToken"><b>email:</b></p>
-    <p id="idToken"><b>ID Token:</b></p>
-    <p id="type"><b>type:</b></p>
-    <p id="viewType"><b>viewType:</b></p>
-    <p id="utouId"><b>utouId:</b></p>
-    <p id="roomId"><b>roomId:</b></p>
-    <p id="groupId"><b>groupId:</b></p>
-    <p id="friendship"><b>isFriendship:</b></p>
-    <p id="scanCode"><b>Code:</b></p>
-    <p id="isLoggedIn"><b>isLoggedIn:</b></p>
-    <p id="universalLink1"><b>Universal Link:</b></p>
-    <p id="universalLink2"><b>Universal Link with Query params:</b></p>
-    <p>
-      <a href="https://jirawatee.github.io/liff/path/?param=1">Link to Path</a>
-    </p>
+  <body class="vh-100">
+   <div id="cart" class="container vh-100 position-relative">
+     <div class="row py-3">
+       <div class="col-4 d-flex flex-wrap align-items-center">
+         <img src="assets/logo.png" class="img-fluid" alt="INSTi Logo">
+       </div>
+       <div class="col-8">
+         <p class="font-weight-bold mb-0">ชุดตรวจเอชไอวีด้วยตัวเอง</p>
+         <p class="text-muted small mb-0">อินสติ INSTI เป็นชุดตรวจคัดกรองเอชไอวีด้วยตนเองที่ใช้เวลาตรวจเพียง 1 นาทีเท่านั้น</p>
+       </div>
+     </div>
 
-    <button id="btnMsg" onclick="sendMsg()">Send Message</button>
-    <button id="btnShare" onclick="shareMsg()">Share Target Picker</button>
-    <button onclick="openWindow()">Open Window</button>
-    <button id="btnScanCode" onclick="scanCode()">Scan Code</button>
-    <button id="btnLogOut" onclick="logOut()">Log Out</button>
-    <button id="btnClose" onclick="closed()">Close</button>
+     <div class="row">
+       <div class="col-12 px-0">
+          <img src="assets/banner.png" class="img-fluid rounded" alt="INSTi Logo">
+       </div>
+     </div>
 
-    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+     <div class="row">
+      <div class="col-12 py-3">
+        <p class="font-weight-bold text-muted mb-0">รายการสินค้าที่สนใจ</p>
+         <table class="table">
+           <thead></thead>
+           <tbody>
+             <tr>
+               <td width="50%">ชุดตรวจเอชไอวี Insti</td>
+               <td class="id-input">
+                <div class="value-button decrease" value="Decrease Value">-</div>
+                <input id="product-1" type="number" class="number" value="0" />
+                <div class="value-button increase" value="Increase Value">+</div>
+               </td>
+             </tr>
+             <tr>
+               <td width="50%">ชุดตรวจหนองใน ด้วยตัวเอง</td>
+               <td class="id-input">
+                <div class="value-button decrease" value="Decrease Value">-</div>
+                <input id="product-2" type="number" class="number" value="0" />
+                <div class="value-button increase" value="Increase Value">+</div>
+               </td>
+             </tr>
+           </tbody>
+         </table>
+      </div>
+    </div>
+
+    <div class="position-absolute bottom-0 start-50 translate-middle-x w-100 px-0">
+      <button id="checkout-cart" class="btn btn-success w-100 rounded-0">สั่งซื้อเลย</button>
+    </div>
+   </div>
+
+   <div id="deliver" class="container vh-100 position-relative d-none">
+    <div class="row">
+      <div class="col-12 py-3">
+        <p class="font-weight-bold text-muted mb-2">รายการสินค้าที่สนใจ</p>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+          <label class="form-check-label" for="inlineRadio1">จัดส่งสินค้าทางไปรษณีย์ (ฟรี)</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+          <label class="form-check-label" for="inlineRadio2">เดลิเวอร์รี่ 100 บาท (สำหรับ 10 KM)</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 py-3">
+        <p class="font-weight-bold text-muted mb-2">กรุณาระบุหมายเลขโทรศัพท์ของท่าน</p>
+        <input type="tel" class="form-control">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 py-3">
+        <p class="font-weight-bold text-muted mb-2">กรุณาระบุชื่อผู้รับสินค้า</p>
+        <input type="text" class="form-control">
+      </div>
+    </div>
+
+    <div class="row d-none">
+      <div class="col-12 py-3">
+        <p class="font-weight-bold text-muted mb-2">กรุณาระบุสถานที่จัดส่งสินค้า</p>
+        <p class="text-danger">MAP</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 py-3">
+        <p class="font-weight-bold text-muted mb-2">กรุณาระบุที่อยู่/เลขที่บ้านสำหรับจัดส่งสินค้า</p>
+        <input type="text" class="form-control">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-3 py-3">
+        <p class="font-weight-bold text-muted mb-2">ราคา</p>
+      </div>
+      <div class="col-9 py-3">
+        <p class="text-center"><span id="total-price">0</span> บาท</p>
+      </div>
+    </div>
+
+    <div class="position-absolute bottom-0 start-50 translate-middle-x w-100 px-0">
+      <button id="checkout-deliver" class="btn btn-success w-100 rounded-0">สั่งซื้อเลย</button>
+    </div>
+   </div>
+    <!-- script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
     <script>
-      function createUniversalLink() {
-        const link1 = liff.permanentLink.createUrl();
-        document.getElementById("universalLink1").append(link1);
+      $(function () {
+        $('.increase').click(function() {
+          let scope = $(this).parent(".id-input");
+          let input_field = scope.find(".number");
 
-        liff.permanentLink.setExtraQueryParam("param=9");
-        const link2 = liff.permanentLink.createUrl();
-        document.getElementById("universalLink2").append(link2);
-      }
+          var value = parseInt(input_field.val(), 10);
+          value = isNaN(value) ? 0 : value;
+          value++;
+          input_field.val(value);
+        }); 
+        
+        $('.decrease').click(function() {
+          let scope = $(this).parent(".id-input");
+          let input_field = scope.find(".number");
 
-      async function shareMsg() {
-        await liff.shareTargetPicker([
-          {
-            type: "text",
-            text: "This message was sent by ShareTargetPicker",
-          },
-        ]);
-      }
+          var value = parseInt(input_field.val(), 10);
+          value = isNaN(value) ? 0 : value;
+          value < 1 ? value = 1 : '';
+          value--;
+          input_field.val(value);
+        }); 
 
-      function logOut() {
-        liff.logout();
-        window.location.reload();
-      }
+        $('#checkout-cart').click(function() {
+          $('#cart').addClass("d-none");
 
-      function closed() {
-        liff.closeWindow();
-      }
+          let product_1 = $('#product-1').val();
+          let product_2 = $('#product-2').val();
 
-      async function scanCode() {
-        const result = await liff.scanCode();
-        document.getElementById("scanCode").append(result.value);
-      }
+          var sum_product = parseInt(product_1) + parseInt(product_2);
+          var total_price = sum_product * 700;
 
-      function openWindow() {
-        liff.openWindow({
-          url: "https://line.me",
-          external: true,
+          $('#total-price').text(total_price.toFixed(2));
+
+          $('#deliver').removeClass("d-none");
         });
-      }
 
-      async function getFriendship() {
-        const friend = await liff.getFriendship();
-        document.getElementById("friendship").append(friend.friendFlag);
-        if (!friend.friendFlag) {
-          if (confirm("คุณยังไม่ได้เพิ่ม Bot เป็นเพื่อน จะเพิ่มเลยไหม?")) {
-            window.location = "https://line.me/R/ti/p/@178yfyoa";
-          }
-        }
-      }
-
-      async function sendMsg() {
-        if (liff.getContext().type !== "none") {
-          await liff.sendMessages([
-            {
-              type: "sticker",
-              stickerId: 1,
-              packageId: 1,
-            },
-          ]);
-          alert("Message sent");
-        }
-      }
-
-      function getContext() {
-        document.getElementById("type").append(liff.getContext().type);
-        document.getElementById("viewType").append(liff.getContext().viewType);
-        document.getElementById("utouId").append(liff.getContext().utouId);
-        document.getElementById("roomId").append(liff.getContext().roomId);
-        document.getElementById("groupId").append(liff.getContext().groupId);
-      }
-
-      async function getUserProfile() {
-        const profile = await liff.getProfile();
-        document.getElementById("pictureUrl").src = profile.pictureUrl;
-        document.getElementById("userId").append(profile.userId);
-        document.getElementById("statusMessage").append(profile.statusMessage);
-        document.getElementById("displayName").append(profile.displayName);
-        document
-          .getElementById("decodedIDToken")
-          .append(liff.getDecodedIDToken().email);
-        document.getElementById("idToken").append(liff.getIDToken());
-      }
-
-      function getEnvironment() {
-        document.getElementById("os").append(liff.getOS());
-        document.getElementById("language").append(liff.getLanguage());
-        document.getElementById("version").append(liff.getVersion());
-        document.getElementById("accessToken").append(liff.getAccessToken());
-        document.getElementById("isInClient").append(liff.isInClient());
-        if (liff.isInClient()) {
-          document.getElementById("btnLogOut").style.display = "none";
-        } else {
-          document.getElementById("btnMsg").style.display = "none";
-          document.getElementById("btnScanCode").style.display = "none";
-          document.getElementById("btnClose").style.display = "none";
-        }
-      }
-
-      async function main() {
-        liff.ready.then(() => {
-          document.getElementById("isLoggedIn").append(liff.isLoggedIn());
-          if (liff.isLoggedIn()) {
-            getEnvironment();
-            getUserProfile();
-            getContext();
-            getFriendship();
-            createUniversalLink();
-          } else {
-            liff.login();
-          }
+        $('#checkout-deliver').click(function() {
+          $('#deliver').addClass("d-none");
         });
-        await liff.init({ liffId: "1656416072-XZZqzE5A" });
-      }
-      main();
+      }); 
     </script>
   </body>
 </html>
