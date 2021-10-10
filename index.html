@@ -174,6 +174,17 @@
 
         $('#checkout-deliver').click(function() {
           $('#deliver').addClass("d-none");
+
+          if (liff.getContext().type !== "none") {
+            await liff.sendMessages([
+              {
+                type: "text",
+                text: 'Hello, World! <br>'
+              },
+            ]);
+          }
+
+          liff.closeWindow();
         });
       }); 
 
