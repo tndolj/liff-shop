@@ -177,7 +177,7 @@
 
           sendMsg()
 
-          liff.closeWindow();
+          // liff.closeWindow();
         });
       }); 
 
@@ -194,12 +194,17 @@
       
       async function sendMsg() {
         if (liff.getContext().type !== "none") {
-          await liff.sendMessages([
-            {
-              type: "text",
-              text: 'Your Order is ...'
-            },
-          ]);
+          var option = $('input[name="inlineRadioOptions"]').prop('checked').val();
+          console.log(option);
+          if('inlineRadioOptions' == 'option1') {
+
+          }
+          // await liff.sendMessages([
+          //   {
+          //     type: "text",
+          //     text: 'รายการวันนี้เป็นแบบ'+
+          //   },
+          // ]);
         }
       }
 
