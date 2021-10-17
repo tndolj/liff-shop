@@ -173,12 +173,14 @@
         });
 
         $('input[name="inlineRadioOptions"]').change(function() {
-          var option = $('input[name="inlineRadioOptions"]').prop('checked', true).val();
+          var radio_option = $(this).prop('checked', true).val();
 
-          if (option != 'option1') {
+          if (radio_option != 'option1') {
             $('#map-container').removeClass('d-none');
+            console.log('show');
           } else {
             $('#map-container').addClass('d-none');
+            console.log('hide');
           }
         });
 
