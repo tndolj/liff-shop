@@ -85,6 +85,7 @@
           <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
           <label class="form-check-label" for="inlineRadio2">ส่งส่งผ่าน Grab</label>
         </div>
+        <input type="text" class="d-none" name="option_value" id="option_value">
       </div>
     </div>
 
@@ -176,17 +177,17 @@
 
         $('input[name="inlineRadioOptions"]').change(function() {
           var radio_option = $(this).prop('checked', true).val();
-          
-          $('input[name="inlineRadioOptions"]').prop('checked', false);
+
+          $('#option_value').val(radio_option);
 
           if (radio_option != 'option1') {
             $('#map-container').removeClass('d-none');
           } else {
             $('#map-container').addClass('d-none');
           }
-          
-          $(this).prop('checked', true);
         });
+        
+        $('input[name="inlineRadioOptions"]').trigger('change');
 
         $('#checkout-deliver').click(function() {
           $('#deliver').addClass("d-none");
@@ -201,7 +202,7 @@
         liff.ready.then(() => {
           if (liff.isLoggedIn()) {
             $('#cart').removeClass("d-none");
-            console.log('test 2');
+            console.log('test 3');
           } else {
             liff.login();
           }
@@ -214,7 +215,7 @@
           var customer_name = $('input[name="customer_name"]').val();
           var tel           = $('input[name="tel"]').val();
           var address       = $('input[name="address"]').val();
-          let option_value  = $('input[name="inlineRadioOptions"]').prop('checked', true).val();
+          let option_value  = $('#option_value').val();
           var option_text   = '';
           let product_1     = $('#product-1').val();
           let product_2     = $('#product-2').val();
