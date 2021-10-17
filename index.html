@@ -79,11 +79,11 @@
         <p class="font-weight-bold text-muted mb-2">รายการสินค้าที่สนใจ</p>
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-          <label class="form-check-label" for="inlineRadio1">จัดส่งสินค้าทางไปรษณีย์ (ฟรี)</label>
+          <label class="form-check-label" for="inlineRadio1">จัดส่งทาง Kerry, Flash, J&T</label>
         </div>
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-          <label class="form-check-label" for="inlineRadio2">เดลิเวอร์รี่ 100 บาท (สำหรับ 10 KM)</label>
+          <label class="form-check-label" for="inlineRadio2">ส่งส่งผ่าน Grab</label>
         </div>
       </div>
     </div>
@@ -102,7 +102,7 @@
       </div>
     </div>
 
-    <div class="row d-none">
+    <div id="map-container" class="row d-none">
       <div class="col-12 py-3">
         <p class="font-weight-bold text-muted mb-2">กรุณาระบุสถานที่จัดส่งสินค้า</p>
         <p class="text-danger">MAP</p>
@@ -172,6 +172,16 @@
           $('#deliver').removeClass("d-none");
         });
 
+        $('input[name="inlineRadioOptions"]').change(function() {
+          var option = $('input[name="inlineRadioOptions"]').prop('checked', true).val();
+
+          if (option != 'option1') {
+            $('#map-container').removeClass('d-none');
+          } else {
+            $('#map-container').addClass('d-none');
+          }
+        });
+
         $('#checkout-deliver').click(function() {
           $('#deliver').addClass("d-none");
 
@@ -203,9 +213,9 @@
           let product_2 = $('#product-2').val();
 
           if('inlineRadioOptions' == 'option1') {
-            option_text = 'จัดส่งสินค้าทางไปรษณีย์';
+            option_text = 'จัดส่งทาง Kerry, Flash, J&T ';
           } else {
-            option_text = 'เดลิเวอร์รี่';
+            option_text = 'ส่งส่งผ่าน Grab';
           }
 
           let text_message = {
@@ -306,7 +316,7 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "- ชุดตรวจเอชไอวี Insti (700 บาท) จำนวน " + product_1,
+                  "text": " - ชุดตรวจเอชไอวี Insti (700 บาท) จำนวน " + product_1,
                   "wrap": true,
                   "color": "#666666",
                   "size": "sm",
@@ -325,7 +335,7 @@
               "contents": [
                 {
                   "type": "text",
-                  "text": "- ชุดตรวจหนองใน ด้วยตัวเอง (700 บาท) จำนวน " + product_2,
+                  "text": " - ชุดตรวจหนองใน ด้วยตัวเอง (700 บาท) จำนวน " + product_2,
                   "wrap": true,
                   "color": "#666666",
                   "size": "sm",
