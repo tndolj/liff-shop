@@ -182,19 +182,19 @@
       }); 
 
       async function main() {
-        liff.ready.then(() => {
-          if (liff.isLoggedIn()) {
-            $('#cart').removeClass("d-none");
-          } else {
-            liff.login();
-          }
-        });
+        // liff.ready.then(() => {
+        //   if (liff.isLoggedIn()) {
+        //     $('#cart').removeClass("d-none");
+        //   } else {
+        //     liff.login();
+        //   }
+        // });
         await liff.init({ liffId: "1656517638-x8aYEG1D" });
       }
       
       async function sendMsg() {
         if (liff.getContext().type !== "none") {
-          var option = $('input[name="inlineRadioOptions"]').prop('checked').val();
+          var option = $('input[name="inlineRadioOptions"]').prop('checked', true).val();
           console.log(option);
           if('inlineRadioOptions' == 'option1') {
 
