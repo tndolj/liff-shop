@@ -200,7 +200,6 @@
         liff.ready.then(() => {
           if (liff.isLoggedIn()) {
             $('#cart').removeClass("d-none");
-            console.log('test 4');
           } else {
             liff.login();
           }
@@ -387,11 +386,11 @@
             });
           }
 
-          full_message.push({
-              type: "image",
-              originalContentUrl: "http://go.10sib.com/assets/qr_code.jpg",
-              previewImageUrl: "http://go.10sib.com/assets/qr_code.jpg"
-          });
+          // full_message.push({
+          //     type: "image",
+          //     originalContentUrl: "http://go.10sib.com/assets/qr_code.jpg",
+          //     previewImageUrl: "http://go.10sib.com/assets/qr_code.jpg"
+          // });
 
           await liff.sendMessages(full_message);
         }
