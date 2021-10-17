@@ -85,7 +85,7 @@
           <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
           <label class="form-check-label" for="inlineRadio2">ส่งส่งผ่าน Grab</label>
         </div>
-        <input type="text" class="d-none" name="option_value" id="option_value">
+        <input type="text" class="d-none" name="option_value" id="option_value" value="option1">
       </div>
     </div>
 
@@ -186,8 +186,6 @@
             $('#map-container').addClass('d-none');
           }
         });
-        
-        $('input[name="inlineRadioOptions"]').trigger('change');
 
         $('#checkout-deliver').click(function() {
           $('#deliver').addClass("d-none");
@@ -202,7 +200,7 @@
         liff.ready.then(() => {
           if (liff.isLoggedIn()) {
             $('#cart').removeClass("d-none");
-            console.log('test 3');
+            console.log('test 4');
           } else {
             liff.login();
           }
