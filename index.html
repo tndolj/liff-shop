@@ -189,7 +189,7 @@
 
           sendMsg()
 
-          liff.closeWindow();
+          // liff.closeWindow();
         });
       }); 
 
@@ -371,6 +371,8 @@
               contents: text_message
           });
 
+          console.log(full_message);
+
           if(option != 'option1') {
             var lat_value = $('#lat').val();
             var lng_value = $('#lng').val();
@@ -383,7 +385,9 @@
             });
           }
 
-          await liff.sendMessages(full_message);
+          console.log(full_message);
+
+          // await liff.sendMessages(full_message);
         }
       }
 
