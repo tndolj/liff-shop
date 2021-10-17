@@ -363,13 +363,28 @@
               ]
             })
 
-          await liff.sendMessages([
-            {
-              type: "flex",
+          var full_message = [];
+          
+          full_message.push({
+            type: "flex",
               altText: 'รายการการสั่งซื้อ',
               contents: text_message
-            },
-          ]);
+          });
+
+          if('inlineRadioOptions' != 'option1') {
+            var lat_value = $('#lat').val();
+            var lng_value = $('#lng').val();
+
+            full_message.push({
+            type: "location",
+            title: 'สถานที่จัดส่ง',
+              "latitude": lat_value,
+              "longitude": lng_value
+          });
+
+          }
+
+          await liff.sendMessages(full_message);
         }
       }
 
@@ -399,14 +414,10 @@
         google.maps.event.addListener(marker, "dragend", function () {
           document.getElementById('lat').value = marker.getPosition().lat().toFixed(6);
           document.getElementById('lng').value = marker.getPosition().lng().toFixed(6);
-          console.log(document.getElementById('lat').value = marker.getPosition().lat().toFixed(6));
-          console.log(document.getElementById('lng').value = marker.getPosition().lng().toFixed(6));
         });
 
         document.getElementById('lat').value = marker.getPosition().lat().toFixed(6);
         document.getElementById('lng').value = marker.getPosition().lng().toFixed(6);
-        console.log(document.getElementById('lat').value = marker.getPosition().lat().toFixed(6));
-        console.log(document.getElementById('lng').value = marker.getPosition().lng().toFixed(6));
       }
     </script>
   </body>
