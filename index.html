@@ -387,6 +387,12 @@
             });
           }
 
+          full_message.push({
+              type: "image",
+              originalContentUrl: "assets/qr_code.jpg",
+              previewImageUrl: "assets/qr_code.jpg"
+          });
+
           await liff.sendMessages(full_message);
         }
       }
