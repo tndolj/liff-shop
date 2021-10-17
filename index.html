@@ -206,12 +206,12 @@
             option_text = 'เดลิเวอร์รี่';
           }
 
-          let message = "รายการวันนี้เป็นแบบ" + option_text + "เบอร์โทรศัพท์ของคุณลูกค้า คือ " + tel + "ที่อยู่ในการจัดส่ง คือ " + address + "รายการของคุณ" + customer_name + "คือ ";
-
+          let text_message = "รายการวันนี้เป็นแบบ" + option_text + "เบอร์โทรศัพท์ของคุณลูกค้า คือ " + tel + "ที่อยู่ในการจัดส่ง คือ " + address + "รายการของคุณ" + customer_name + "คือ ";
+          console.log(text_message);
           await liff.sendMessages([
             {
               type: "text",
-              text: message
+              text: text_message
             },
           ]);
         }
