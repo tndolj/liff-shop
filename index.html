@@ -199,6 +199,8 @@
           var address       = $('input[name="address"]').val();
           var option        = $('input[name="inlineRadioOptions"]').prop('checked', true).val();
           var option_text   = '';
+          let product_1 = $('#product-1').val();
+          let product_2 = $('#product-2').val();
 
           if('inlineRadioOptions' == 'option1') {
             option_text = 'จัดส่งสินค้าทางไปรษณีย์';
@@ -294,6 +296,58 @@
               }
             }
           }
+
+          if (product_1 != 0) {
+            text_message.body.contents.push({
+              "type": "box",
+              "layout": "baseline",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "ชุดตรวจเอชไอวี Insti (700 บาท) จำนวน " + product_1,
+                  "wrap": true,
+                  "color": "#666666",
+                  "size": "sm",
+                  "flex": 6
+                }
+              ]
+            })
+          }
+
+          if (product_2 != 0) {
+            text_message.body.contents.push({
+              "type": "box",
+              "layout": "baseline",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "ชุดตรวจหนองใน ด้วยตัวเอง (700 บาท) จำนวน " + product_2,
+                  "wrap": true,
+                  "color": "#666666",
+                  "size": "sm",
+                  "flex": 6
+                }
+              ]
+            })
+          }
+
+          text_message.body.contents.push({
+              "type": "box",
+              "layout": "baseline",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "เมื่อคุณลูกค้าชำระเงินเรียบร้อยแล้ว กรุณาส่งหลักฐานการชำระเงินผ่านทาง Line: Insti",
+                  "wrap": true,
+                  "color": "#666666",
+                  "size": "sm",
+                  "flex": 6
+                }
+              ]
+            })
 
           await liff.sendMessages([
             {
