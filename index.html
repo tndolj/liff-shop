@@ -206,12 +206,100 @@
             option_text = 'เดลิเวอร์รี่';
           }
 
-          let text_message = "รายการวันนี้เป็นแบบ" + option_text + "เบอร์โทรศัพท์ของคุณลูกค้า คือ " + tel + "ที่อยู่ในการจัดส่ง คือ " + address + "รายการของคุณ" + customer_name + "คือ ";
-          console.log(text_message);
+          let text_message = {
+            "type": "bubble",
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "รายการคำสั่งซื้อ",
+                  "weight": "bold",
+                  "size": "xl"
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "margin": "lg",
+                  "spacing": "sm",
+                  "contents": [
+                    {
+                      "type": "box",
+                      "layout": "baseline",
+                      "spacing": "sm",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "รายการวันนี้เป็นแบบ" + option_text,
+                          "wrap": true,
+                          "color": "#666666",
+                          "size": "sm",
+                          "flex": 6
+                        }
+                      ]
+                    },
+                    {
+                      "type": "box",
+                      "layout": "baseline",
+                      "spacing": "sm",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "เบอร์โทรศัพท์ของคุณลูกค้า คือ " + tel,
+                          "wrap": true,
+                          "color": "#666666",
+                          "size": "sm",
+                          "flex": 6
+                        }
+                      ]
+                    },
+                    {
+                      "type": "box",
+                      "layout": "baseline",
+                      "spacing": "sm",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "ที่อยู่ในการจัดส่ง คือ " + address,
+                          "wrap": true,
+                          "color": "#666666",
+                          "size": "sm",
+                          "flex": 6
+                        }
+                      ]
+                    },
+                    {
+                      "type": "box",
+                      "layout": "baseline",
+                      "spacing": "sm",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "รายการของคุณ" + customer_name + " คือ",
+                          "wrap": true,
+                          "color": "#666666",
+                          "size": "sm",
+                          "flex": 6
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "styles": {
+              "header": {
+                "separator": false
+              }
+            }
+          }
+
           await liff.sendMessages([
             {
-              type: "text",
-              text: text_message
+              type: "flex",
+              altText: 'รายการการสั่งซื้อ',
+              contents: text_message
             },
           ]);
         }
