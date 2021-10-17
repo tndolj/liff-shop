@@ -91,14 +91,14 @@
     <div class="row">
       <div class="col-12 py-3">
         <p class="font-weight-bold text-muted mb-2">กรุณาระบุหมายเลขโทรศัพท์ของท่าน</p>
-        <input type="tel" class="form-control">
+        <input type="tel" name="tel" class="form-control">
       </div>
     </div>
 
     <div class="row">
       <div class="col-12 py-3">
         <p class="font-weight-bold text-muted mb-2">กรุณาระบุชื่อผู้รับสินค้า</p>
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" name="customer_name">
       </div>
     </div>
 
@@ -112,7 +112,7 @@
     <div class="row">
       <div class="col-12 py-3">
         <p class="font-weight-bold text-muted mb-2">กรุณาระบุที่อยู่/เลขที่บ้านสำหรับจัดส่งสินค้า</p>
-        <input type="text" class="form-control">
+        <input type="text" class="form-control" name="address">
       </div>
     </div>
 
@@ -182,29 +182,41 @@
       }); 
 
       async function main() {
-        // liff.ready.then(() => {
-        //   if (liff.isLoggedIn()) {
-        //     $('#cart').removeClass("d-none");
-        //   } else {
-        //     liff.login();
-        //   }
-        // });
+        liff.ready.then(() => {
+          if (liff.isLoggedIn()) {
+            $('#cart').removeClass("d-none");
+          } else {
+            liff.login();
+          }
+        });
         await liff.init({ liffId: "1656517638-x8aYEG1D" });
       }
       
       async function sendMsg() {
         if (liff.getContext().type !== "none") {
-          var option = $('input[name="inlineRadioOptions"]').prop('checked', true).val();
-          console.log(option);
-          if('inlineRadioOptions' == 'option1') {
+          var customer_name = $('input[name="customer_name"]').val();
+          var tel           = $('input[name="tel"]').val();
+          var address       = $('input[name="address"]').val();
+          var option        = $('input[name="inlineRadioOptions"]').prop('checked', true).val();
+          var option_text   = '';
 
+          if('inlineRadioOptions' == 'option1') {
+            option_text = 'จัดส่งสินค้าทางไปรษณีย์';
+          } else {
+            option_text = 'เดลิเวอร์รี่';
           }
-          // await liff.sendMessages([
-          //   {
-          //     type: "text",
-          //     text: 'รายการวันนี้เป็นแบบ'+
-          //   },
-          // ]);
+
+          let message = "รายการวันนี้เป็นแบบ" + option_text + "
+              เบอร์โทรศัพท์ของคุณลูกค้า คือ " + tel + "
+              ที่อยู่ในการจัดส่ง คือ " + address + "
+              รายการของคุณ" + customer_name + "คือ ";
+
+          await liff.sendMessages([
+            {
+              type: "text",
+              text: message
+            },
+          ]);
         }
       }
 
