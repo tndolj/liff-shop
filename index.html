@@ -366,22 +366,21 @@
           var full_message = [];
           
           full_message.push({
-            type: "flex",
+              type: "flex",
               altText: 'รายการการสั่งซื้อ',
               contents: text_message
           });
 
-          if('inlineRadioOptions' != 'option1') {
+          if(option != 'option1') {
             var lat_value = $('#lat').val();
             var lng_value = $('#lng').val();
 
             full_message.push({
-            type: "location",
-            title: 'สถานที่จัดส่ง',
-              "latitude": lat_value,
-              "longitude": lng_value
-          });
-
+              type: "location",
+              title: 'สถานที่จัดส่ง',
+              latitude: lat_value,
+              longitude: lng_value
+            });
           }
 
           await liff.sendMessages(full_message);
