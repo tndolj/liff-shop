@@ -399,10 +399,14 @@
         google.maps.event.addListener(marker, "dragend", function () {
           document.getElementById('lat').value = marker.getPosition().lat().toFixed(6);
           document.getElementById('lng').value = marker.getPosition().lng().toFixed(6);
+          console.log(document.getElementById('lat').value = marker.getPosition().lat().toFixed(6));
+          console.log(document.getElementById('lng').value = marker.getPosition().lng().toFixed(6));
         });
 
         document.getElementById('lat').value = marker.getPosition().lat().toFixed(6);
         document.getElementById('lng').value = marker.getPosition().lng().toFixed(6);
+        console.log(document.getElementById('lat').value = marker.getPosition().lat().toFixed(6));
+        console.log(document.getElementById('lng').value = marker.getPosition().lng().toFixed(6));
       }
     </script>
   </body>
