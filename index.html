@@ -177,10 +177,8 @@
 
           if (radio_option != 'option1') {
             $('#map-container').removeClass('d-none');
-            console.log('show');
           } else {
             $('#map-container').addClass('d-none');
-            console.log('hide');
           }
         });
 
@@ -374,6 +372,20 @@
       }
 
       main();
+    </script>
+
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT6p7WiAwz_Qyjflo6Rnrfb6qOYYC8bY8&callback=initMap">
+    </script>
+    <script>
+      let map;
+      
+      function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: -34.397, lng: 150.644 },
+          zoom: 8,
+        });
+      }
     </script>
   </body>
 </html>
