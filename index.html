@@ -139,6 +139,8 @@
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script>
       $(function () {
+        let option_value = 'option1';
+
         $('.increase').click(function() {
           let scope = $(this).parent(".id-input");
           let input_field = scope.find(".number");
@@ -177,6 +179,8 @@
         $('input[name="inlineRadioOptions"]').change(function() {
           var radio_option = $(this).prop('checked', true).val();
 
+          option_value = radio_option;
+
           if (radio_option != 'option1') {
             $('#map-container').removeClass('d-none');
           } else {
@@ -187,7 +191,7 @@
         $('#checkout-deliver').click(function() {
           $('#deliver').addClass("d-none");
 
-          sendMsg()
+          sendMsg();
 
           // liff.closeWindow();
         });
@@ -197,6 +201,7 @@
         liff.ready.then(() => {
           if (liff.isLoggedIn()) {
             $('#cart').removeClass("d-none");
+            console.log('test 1');
           } else {
             liff.login();
           }
@@ -209,11 +214,9 @@
           var customer_name = $('input[name="customer_name"]').val();
           var tel           = $('input[name="tel"]').val();
           var address       = $('input[name="address"]').val();
-          let option_value  = $('input[name="inlineRadioOptions"]').prop('checked', true).val();
           var option_text   = '';
           let product_1     = $('#product-1').val();
           let product_2     = $('#product-2').val();
-
 
           if(option_value == 'option1') {
             option_text = 'จัดส่งทาง Kerry, Flash, J&T ';
@@ -372,8 +375,6 @@
               contents: text_message
           });
 
-          console.log(full_message);
-
           if(option_value != 'option1') {
             var lat_value = $('#lat').val();
             var lng_value = $('#lng').val();
@@ -388,7 +389,7 @@
 
           console.log(full_message);
 
-          await liff.sendMessages(full_message);
+          // await liff.sendMessages(full_message);
         }
       }
 
